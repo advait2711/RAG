@@ -1,8 +1,8 @@
 {
     "name": "rag-visualizer",
     "scripts": {
-        "postinstall": "npm install --prefix frontend --include=dev && npm install --prefix backend",
-        "build": "npm run build --prefix frontend",
-        "start": "node backend/server.js"
+        "postinstall": "cd frontend && npm install --include=dev && cd ../backend && npm install",
+        "build": "cd frontend && npm run build",
+        "start": "cd backend && node server.js"
     }
 }
