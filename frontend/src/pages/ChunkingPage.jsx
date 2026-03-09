@@ -91,21 +91,21 @@ export default function ChunkingPage({ sessionId, documentInfo, onChunkComplete 
     return (
         <div className="space-y-8">
             {/* Header */}
-            <div className="text-center space-y-3">
-                <h1 className="text-3xl font-bold gradient-text">Choose Chunking Method</h1>
-                <p className="text-surface-200/60 max-w-lg mx-auto">
-                    Select how to split <span className="text-brand-400 font-medium">{documentInfo?.fileName}</span> into
+            <div className="text-center space-y-3 px-2">
+                <h1 className="text-2xl sm:text-3xl font-bold gradient-text">Choose Chunking Method</h1>
+                <p className="text-surface-200/60 text-sm sm:text-base max-w-lg mx-auto">
+                    Select how to split <span className="text-brand-400 font-medium break-all">{documentInfo?.fileName}</span> into
                     chunks. Each method has different trade-offs.
                 </p>
             </div>
 
             {/* Document Info Bar */}
-            <div className="glass-card p-4 flex items-center justify-center gap-8 text-sm">
+            <div className="glass-card p-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm">
                 <div className="text-center">
                     <span className="text-surface-200/40 text-xs block">File</span>
-                    <span className="font-medium text-surface-100">{documentInfo?.fileName}</span>
+                    <span className="font-medium text-surface-100 break-all">{documentInfo?.fileName}</span>
                 </div>
-                <div className="w-px h-8 bg-surface-700/50" />
+                <div className="hidden sm:block w-px h-8 bg-surface-700/50" />
                 <div className="text-center">
                     <span className="text-surface-200/40 text-xs block">Characters</span>
                     <span className="font-medium text-brand-400">{documentInfo?.textLength?.toLocaleString()}</span>

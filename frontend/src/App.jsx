@@ -57,7 +57,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Navbar onReset={handleReset} />
       <StepIndicator steps={steps} currentStep={currentStep} />
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-3 sm:px-6 py-6 sm:py-8">
         <Routes>
           <Route
             path="/upload"

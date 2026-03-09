@@ -111,37 +111,37 @@ export default function ChunkViewerPage({ sessionId, chunkData, onEmbedComplete,
     return (
         <div className="space-y-8">
             {/* Header */}
-            <div className="text-center space-y-3">
-                <h1 className="text-3xl font-bold gradient-text">Chunk Viewer</h1>
-                <p className="text-surface-200/60">
+            <div className="text-center space-y-3 px-2">
+                <h1 className="text-2xl sm:text-3xl font-bold gradient-text">Chunk Viewer</h1>
+                <p className="text-surface-200/60 text-sm sm:text-base">
                     Visualize how your document was split into <span className="text-brand-400 font-medium">{chunkData?.totalChunks}</span> chunks
                 </p>
             </div>
 
             {/* Stats Bar */}
-            <div className="glass-card p-5">
-                <div className="flex items-center justify-center gap-8 text-sm flex-wrap">
-                    <div className="flex items-center gap-3">
-                        <BarChart3 size={16} className="text-brand-400" />
+            <div className="glass-card p-4 sm:p-5">
+                <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-4 sm:gap-8 text-sm">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <BarChart3 size={16} className="text-brand-400 shrink-0" />
                         <div>
                             <span className="text-surface-200/40 text-xs block">Method</span>
                             <span className="font-medium text-surface-100 capitalize">{chunkData?.method}</span>
                         </div>
                     </div>
-                    <div className="w-px h-10 bg-surface-700/50" />
+                    <div className="hidden sm:block w-px h-10 bg-surface-700/50" />
                     <div className="text-center">
                         <span className="text-surface-200/40 text-xs block">Total Chunks</span>
-                        <span className="font-bold text-brand-400 text-lg">{chunkData?.stats?.count}</span>
+                        <span className="font-bold text-brand-400 text-base sm:text-lg">{chunkData?.stats?.count}</span>
                     </div>
-                    <div className="w-px h-10 bg-surface-700/50" />
+                    <div className="hidden sm:block w-px h-10 bg-surface-700/50" />
                     <div className="text-center">
                         <span className="text-surface-200/40 text-xs block">Avg Size</span>
-                        <span className="font-medium text-emerald-400">{chunkData?.stats?.avgSize} chars</span>
+                        <span className="font-medium text-emerald-400 text-xs sm:text-sm">{chunkData?.stats?.avgSize} chars</span>
                     </div>
-                    <div className="w-px h-10 bg-surface-700/50" />
+                    <div className="hidden sm:block w-px h-10 bg-surface-700/50" />
                     <div className="text-center">
                         <span className="text-surface-200/40 text-xs block">Min / Max</span>
-                        <span className="font-medium text-violet-400">
+                        <span className="font-medium text-violet-400 text-xs sm:text-sm">
                             {chunkData?.stats?.minSize} / {chunkData?.stats?.maxSize}
                         </span>
                     </div>
@@ -201,12 +201,13 @@ export default function ChunkViewerPage({ sessionId, chunkData, onEmbedComplete,
             )}
 
             {/* Actions */}
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 px-2">
                 {!isEmbedded ? (
-                    <button onClick={handleEmbed} className="btn-primary" disabled={isEmbedding}>
+                    <button onClick={handleEmbed} className="btn-primary text-sm sm:text-base" disabled={isEmbedding}>
                         <div className="flex items-center gap-2">
                             <Database size={18} />
-                            Generate Embeddings & Store in Pinecone
+                            <span className="hidden sm:inline">Generate Embeddings & Store in Pinecone</span>
+                            <span className="sm:hidden">Embed & Store</span>
                         </div>
                     </button>
                 ) : (

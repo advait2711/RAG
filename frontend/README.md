@@ -14,3 +14,9 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+Built a full-stack RAG (Retrieval-Augmented Generation) Visualizer using React, Express, Pinecone, and Google Gemini that lets users upload documents and interactively explore the chunking, embedding, and retrieval pipeline through a guided step-by-step UI.
+
+Implemented 3 text chunking strategies (fixed-size, overlapping, and recursive) with real-time chunk inspection, and integrated Pinecone's vector database with its native embedding model (llama-text-embed-v2) for semantic search and document retrieval.
+
+Deployed as a single-service architecture on AWS App Runner, using in-memory file processing to eliminate filesystem dependencies, with Gemini 2.5 Flash powering context-grounded Q&A over uploaded documents.

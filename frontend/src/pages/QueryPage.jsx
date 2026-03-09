@@ -20,7 +20,7 @@ export default function QueryPage({ sessionId }) {
             const response = await axios.post('/api/query', {
                 sessionId,
                 query: query.trim(),
-                topK: 3,
+                topK: 5,
             })
             setResult(response.data)
         } catch (err) {
@@ -40,30 +40,32 @@ export default function QueryPage({ sessionId }) {
     return (
         <div className="space-y-8">
             {/* Header */}
-            <div className="text-center space-y-3">
-                <h1 className="text-3xl font-bold gradient-text">Ask Your Document</h1>
-                <p className="text-surface-200/60 max-w-lg mx-auto">
+            <div className="text-center space-y-3 px-2">
+                <h1 className="text-2xl sm:text-3xl font-bold gradient-text">Ask Your Document</h1>
+                <p className="text-surface-200/60 text-sm sm:text-base max-w-lg mx-auto">
                     Query your chunks via semantic search. Relevant chunks will be retrieved and
                     sent to Gemini for a polished answer.
                 </p>
             </div>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-                <div className="glass-card p-2 flex items-center gap-2">
-                    <Search size={20} className="text-surface-200/30 ml-3" />
-                    <input
-                        type="text"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Ask anything about your document..."
-                        className="flex-1 bg-transparent border-none outline-none text-surface-100 placeholder-surface-200/30 py-3 px-2"
-                    />
+            <div className="max-w-2xl mx-auto w-full px-2 sm:px-0">
+                <div className="glass-card p-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <div className="flex items-center gap-2 flex-1">
+                        <Search size={20} className="text-surface-200/30 ml-2 sm:ml-3 shrink-0" />
+                        <input
+                            type="text"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Ask anything about your document..."
+                            className="flex-1 bg-transparent border-none outline-none text-surface-100 placeholder-surface-200/30 py-3 px-2 text-sm sm:text-base"
+                        />
+                    </div>
                     <button
                         onClick={handleQuery}
                         disabled={!query.trim() || isQuerying}
-                        className="btn-primary py-3 px-6 flex items-center gap-2"
+                        className="btn-primary py-3 px-6 flex items-center justify-center gap-2 text-sm sm:text-base"
                     >
                         <Sparkles size={16} />
                         Ask

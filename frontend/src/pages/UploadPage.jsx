@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Upload, FileText, File, X, CheckCircle } from 'lucide-react'
+import { Upload, FileText, File, X, CheckCircle, AlertCircle } from 'lucide-react'
 import axios from 'axios'
 import LoadingSpinner from '../components/LoadingSpinner'
 
@@ -74,25 +74,25 @@ export default function UploadPage({ onUploadComplete }) {
 
     if (isUploading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh]">
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
                 <LoadingSpinner message="Parsing your document..." />
             </div>
         )
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-8">
+        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 sm:gap-8 px-4 sm:px-0">
             {/* Header */}
             <div className="text-center space-y-3">
-                <h1 className="text-4xl font-bold gradient-text">Upload Your Document</h1>
-                <p className="text-surface-200/60 text-lg max-w-md">
+                <h1 className="text-2xl sm:text-4xl font-bold gradient-text">Upload Your Document</h1>
+                <p className="text-surface-200/60 text-sm sm:text-lg max-w-md">
                     Drop a PDF or text file to start exploring how RAG chunking works
                 </p>
             </div>
 
             {/* Dropzone */}
             <div
-                className={`w-full max-w-xl glass-card-hover p-12 text-center cursor-pointer transition-all duration-300 ${isDragging ? 'border-brand-400 bg-brand-500/10 scale-[1.02]' : ''
+                className={`w-full max-w-xl glass-card-hover p-6 sm:p-12 text-center cursor-pointer transition-all duration-300 ${isDragging ? 'border-brand-400 bg-brand-500/10 scale-[1.02]' : ''
                     }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -108,14 +108,14 @@ export default function UploadPage({ onUploadComplete }) {
                 />
 
                 {file ? (
-                    <div className="flex flex-col items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                            <CheckCircle size={32} className="text-emerald-400" />
+                    <div className="flex flex-col items-center gap-3 sm:gap-4">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                            <CheckCircle size={28} className="text-emerald-400" />
                         </div>
                         <div className="space-y-1">
-                            <div className="flex items-center gap-2 justify-center">
+                            <div className="flex items-center gap-2 justify-center flex-wrap">
                                 <FileText size={16} className="text-brand-400" />
-                                <span className="text-sm font-semibold text-surface-100">{file.name}</span>
+                                <span className="text-sm font-semibold text-surface-100 break-all">{file.name}</span>
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation()
@@ -130,20 +130,33 @@ export default function UploadPage({ onUploadComplete }) {
                         </div>
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center float">
-                            <Upload size={32} className="text-brand-400" />
+                    <div className="flex flex-col items-center gap-3 sm:gap-4">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center float">
+                            <Upload size={28} className="text-brand-400" />
                         </div>
                         <div className="space-y-1">
                             <p className="text-sm font-medium text-surface-200/80">
                                 Drag & drop your file here
                             </p>
                             <p className="text-xs text-surface-200/40">
-                                or click to browse • PDF, TXT up to 10MB
+                                or click to browse • PDF, TXT
                             </p>
                         </div>
                     </div>
                 )}
+            </div>
+
+            {/* File Limits Info */}
+            <div className="w-full max-w-xl glass-card p-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
+                <div className="flex items-center gap-2">
+                    <AlertCircle size={14} className="text-brand-400" />
+                    <span className="text-surface-200/60">Max file size: <span className="text-brand-400 font-semibold">10 MB</span></span>
+                </div>
+                <div className="hidden sm:block w-px h-5 bg-surface-700/50" />
+                <div className="flex items-center gap-2">
+                    <AlertCircle size={14} className="text-brand-400" />
+                    <span className="text-surface-200/60">Max PDF pages: <span className="text-brand-400 font-semibold">10 pages</span></span>
+                </div>
             </div>
 
             {/* Error */}
